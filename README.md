@@ -11,7 +11,7 @@ Nous aspirons à offrir une représentation visuelle exhaustive de l'influence d
 
 ## Maquette
 
-![Maquette](Images\Maquette.png)
+![Maquette](Images/Maquette.png)
 
 ## Liens Utiles
 
