@@ -1,6 +1,13 @@
 # Cours VI Visualisation de l'information
 
-Ce projet a pour objectif de démontrer l'impact d'événements historiques sur la répartition des sièges à l'Assemblée fédérale suisse. Nous cherchons à offrir une représentation visuelle exhaustive de l'influence de divers événements historiques, tels que la chute du bloc soviétique, le 11 septembre et les manifestations pour le climat, sur la répartition des sièges à l'Assemblée fédérale suisse. Notre but ultime est d'aider les parties concernées à mieux comprendre l'évolution des tendances politiques en Suisse.
+## Membres 
+
+CAILLET Benjamin, DESSIEX Lea, SCHUPBACH Mathieu
+
+## Objectif
+Démontrer l'impact d’événements historiques sur la répartition des sièges à l'assemblée fédérale suisse.
+
+Nous aspirons à offrir une représentation visuelle exhaustive de l'influence de divers événements historiques, tels que la chute du bloc soviétique, le 11 septembre et les manifestations pour le climat, sur la répartition des sièges à l'Assemblée fédérale suisse. Notre objectif est d'aider les parties concernées à mieux comprendre l'évolution des tendances politiques en Suisse.
 
 ## Liens Utiles
 
