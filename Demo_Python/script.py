@@ -1,14 +1,20 @@
 from pyaxis import pyaxis
 import matplotlib.pyplot as plt
-import tkinter as tk
-from tkinter import ttk
+#import tkinter as tk
+from tkinter import *
+import customtkinter as tk
+import customtkinter
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import numpy as np
+
+# Setting up theme of the app
+customtkinter.set_appearance_mode("light")
 
 # Parse the dataset
 fp = r"Dataset.px"
 px = pyaxis.parse(uri=fp, encoding='ANSI')
 data_df = px['DATA']
+
 french_to_german = {
     "Partis - Total": "Parteien - Total",
     "PLR": "FDP",
@@ -74,27 +80,27 @@ def _quit():
     window.destroy()
 
 # GUI setup
-window = tk.Tk()
+window = tk.CTk()
 window.title("Partei and Kanton Selection")
 
 # Partei dropdown
-partei_label = tk.Label(window, text="Parti:")
+partei_label = tk.CTkLabel(window, text="Parti:")
 partei_label.grid(row=0, column=0, padx=0, pady=20)
 partei_list = ["Partis - Total","PLR","PDC","PS","UDC","PL","AdI","PEV","PCS","PVL","PBD","PT","PSA","POCH","PES","AVF","Sol.","Rép.","DS","UDF","PSL","Lega","MCR","Sép.","Autres"]
-partei_combobox = ttk.Combobox(window, values=partei_list)
+partei_combobox = tk.CTkComboBox(window, values=partei_list)
 partei_combobox.grid(row=0, column=1, padx=0, pady=20)
 partei_combobox.set("UDC")
 
 # Kanton dropdown
-kanton_label = tk.Label(window, text="Canton:")
+kanton_label = tk.CTkLabel(window, text="Canton:")
 kanton_label.grid(row=1, column=0, padx=0, pady=20)
 kanton_list = ["Schweiz","Zürich","Bern / Berne","Luzern","Uri","Schwyz","Obwalden","Nidwalden","Glarus","Zug","Fribourg / Freiburg","Solothurn","Basel-Stadt","Basel-Landschaft","Schaffhausen","Appenzell Ausserrhoden","Appenzell Innerrhoden","St. Gallen","Graubünden / Grigioni / Grischun","Aargau","Thurgau","Ticino","Vaud","Valais / Wallis","Neuchâtel","Genève","Jura"]
-kanton_combobox = ttk.Combobox(window, values=kanton_list)
+kanton_combobox = tk.CTkComboBox(window, values=kanton_list)
 kanton_combobox.grid(row=1, column=1, padx=0, pady=20)
 kanton_combobox.set("Schweiz")
 
 # Plot button
-plot_button = tk.Button(window, text="Plot", command=on_button_click)
+plot_button = tk.CTkButton(window, text="Plot", command=on_button_click)
 plot_button.grid(row=2, column=0, columnspan=2, pady=20)
 
 partei_fr = partei_combobox.get()
