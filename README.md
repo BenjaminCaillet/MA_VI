@@ -9,6 +9,10 @@ Démontrer l'impact d’événements historiques sur la répartition des sièges
 
 Nous aspirons à offrir une représentation visuelle exhaustive de l'influence de divers événements historiques, tels que la chute du bloc soviétique, le 11 septembre et les manifestations pour le climat, sur la répartition des sièges à l'Assemblée fédérale suisse. Notre objectif est d'aider les parties concernées à mieux comprendre l'évolution des tendances politiques en Suisse.
 
+## Maquette
+
+![Maquette](Images\Maquette.png)
+
 ## Liens Utiles
 
 - [Documentation Geopandas](https://geopandas.org/en/stable/)
