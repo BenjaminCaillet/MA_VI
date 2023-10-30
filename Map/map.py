@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from pyaxis import pyaxis
 import pandas as pd
+
 dictionnaire_canton_vo_to_french = {
     'Schweiz':'Suisse',
     'Graubünden': 'Grisons',
