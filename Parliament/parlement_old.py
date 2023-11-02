@@ -8,19 +8,13 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import numpy as np
 import poli_sci_kit
 
-import os.path
 
 
 # Setting up theme of the app
 customtkinter.set_appearance_mode("light")
 
 # Parse the dataset
-dossier_script = os.path.dirname(__file__) # TODO: Fix - without os.path
-fp = os.path.join(dossier_script, r"../Dataset/Dataset.px")
-print(fp)
-
-# fp = r"../MA_VI/Dataset/Dataset.px"
-
+fp = r"Dataset.px"
 px = pyaxis.parse(uri=fp, encoding='ANSI')
 data_df = px['DATA']
 
@@ -87,122 +81,30 @@ def plot_parliament(jahr):
     parties = ["one","two"]
     party_colors = ["#ff00ff", "00ff00"]
 
-    # WIP
-
-    # T1
-
-    # # Filtrer pour l'année 2019
-    # df_2019 = data_df[data_df['Jahr'] == '2019'] #.groupby('Partei')
-
-    # # Filtrer pour les lignes où 'Ergebnisse' est 'Gewählte'
-    # df_gewahlte = df_2019[df_2019['Ergebnisse'] == 'Gewählte']
-
-    # # Filtrer les lignes où 'Partei' n'est pas égal à 'Parteien - Total'
-    # df_gewahlte_sieges = df_gewahlte[df_gewahlte['Partei'] != 'Parteien - Total']
-
-    # # Grouper les données par 'Partei' et sommer les sièges correspondants
-    # df_gewahlte_sieges_aggregated = df_gewahlte_sieges.groupby('Partei')['DATA'].sum()
-
-    # T2
-
-    # Sélectionner les colonnes 'Partei' et 'DATA'
-    #df_gewahlte_sieges_aggregated = df_gewahlte_sieges_aggregated.loc[:, ['Partei', 'DATA']]
+    # Filtrer pour l'année 2019
+    df_2019 = data_df[data_df['Jahr'] == '2019']
 
     # Créer un dictionnaire de partis et de sièges
-    #partis_sieges_dict = df_gewahlte_sieges.groupby('Partei')['Ergebnisse'].count().to_dict()
+    partis_sieges_dict = df_2019[df_2019['Ergebnisse'] == 'Gewählte'].groupby('Partei')['Ergebnisse'].count().to_dict()
 
     # Extraire les listes de partis et de sièges dans le même ordre
-    #partis = list(partis_sieges_dict.keys())
-    #sieges_par_partis = list(partis_sieges_dict.values())
+    partis = list(partis_sieges_dict.keys())
+    sieges_par_partis = list(partis_sieges_dict.values())
 
-    #print("Liste des sièges par partis pour 2019:", sieges_par_partis)
-    #print("Liste des partis pour 2019:", partis)
+    print("Liste des sièges par partis pour 2019:", sieges_par_partis)
+    print("Liste des partis pour 2019:", partis)
 
-    # T3
+    # ax2 = poli_sci_kit.plot.parliament(
+    # allocations=seat_allocations,
+    # labels=parties,
+    # colors=party_colors,
+    # style="semicircle",
+    # num_rows=4,
+    # marker_size=175,
+    # speaker=False
+    # )
 
-    # # Filtrer pour l'année 2019 et les candidats élus
-    # df_filtered = data_df[(data_df['Jahr'] == '2019') & (data_df['Ergebnisse'] == 'Gewählte')]
-
-    # # Retirer "Partei - Total" et le kanton "Schweiz"
-    # df_filtered = df_filtered[~df_filtered['Partei'].str.contains('Total') & (df_filtered['Kanton'] != 'Schweiz')]
-
-    # # Grouper les données par 'Partei' et sommer les sièges correspondants
-    # df_sieges_par_parti = df_filtered.groupby('Partei')['DATA'].sum()
-
-    # # Réinitialiser l'index pour obtenir un DataFrame
-    # df_sieges_par_parti = df_sieges_par_parti.reset_index()
-
-    # T4
-
-    # # Filtrer pour l'année 2019 et les candidats élus
-    # df_filtered = data_df[(data_df['Jahr'] == '2019') & (data_df['Ergebnisse'] == 'Gewählte')]
-
-    # # Retirer "Partei - Total" et le kanton "Schweiz"
-    # df_filtered = df_filtered[~df_filtered['Partei'].str.contains('Total') & (df_filtered['Kanton'] != 'Schweiz')]
-
-    # # Grouper les données par 'Partei' et sommer les sièges correspondants
-    # df_sieges_par_parti = df_filtered.groupby('Partei')['DATA'].sum().reset_index()
-
-    # Renommer les colonnes
-    #df_sieges_par_parti.columns = ['Partei', 'Data']
-
-    # Réinitialiser l'index
-    #df_sieges_par_parti = df_sieges_par_parti.reset_index(drop=True)
-
-    # T5
-    print("T5:")
-    # Garder que l'année 2019
-    df_2019 = data_df[data_df['Jahr'] == '2019']
-    print(df_2019.head(6))
-
-    elect = df_2019[(df_2019['Partei'] != "Parteien - Total") & (df_2019['Ergebnisse'] == 'Gewählte') & (df_2019['Kanton'] != "Schweiz")]
-    elect_filtered = elect[elect['Geschlecht'].isin(['Mann', 'Frau'])]
-    #elect_filtered = elect
-    elect_filtered['DATA'] = np.where(~elect_filtered['DATA'].str.contains(r'\d'), '0', elect_filtered['DATA']) # Filter empty values
-    elect_filtered['DATA'] = elect_filtered['DATA'].astype(int)
-    
-    print("elect:")
-    print(elect_filtered.head(7)) # at this stage: "Zürich  2019    FDP       Mann   Gewählte     3"
-    
-    # Combine by gender
-    print("combined gender:")
-    #elect_allgender = elect_filtered.groupby('Geschlecht').sum() # ça fait l'inverse: Total Homme vs Femme au parlement, indépendamment du parti/kanton.
-    #df_sieges_par_canton_parti = elect_filtered.groupby(['Kanton', 'Partei'])['DATA'].sum().reset_index() # On obtient "Aargau - FDP - 2" par ex, beacuoup de 0...
-    df_sieges_par_canton_parti = elect_filtered.groupby(['Partei'])['DATA'].sum().reset_index() # On obtient "Aargau - FDP - 2" par ex, beacuoup de 0...
-    print(df_sieges_par_canton_parti.head(7))
-    print("somme", df_sieges_par_canton_parti['DATA'].sum())
-    print("liste partis:\n", df_sieges_par_canton_parti["Partei"])
-
-    # Combined by canton
-
-    #pivot_data = elect_filtered.pivot(index='Jahr', columns='Geschlecht', values='DATA')
-
-
-
-    # Export
-
-    print("Sanity Check:")
-    #print(df_2019.head(4))
-    #print(df_gewahlte.head(4))
-    #print(df_gewahlte['Geschlecht'].unique())
-    #print(df_gewahlte_sieges_aggregated.head(6))
-    # Afficher le nombre de sièges par parti en 2019
-    #print(df_sieges_par_parti)
-
-    # WIP - End
-
-
-    ax2 = poli_sci_kit.plot.parliament(
-    allocations=seat_allocations,
-    labels=parties,
-    colors=party_colors,
-    style="semicircle",
-    num_rows=4,
-    marker_size=175,
-    speaker=False
-    )
-
-    return ax2
+    # return ax2
 
 def plot_data(partei, kanton):
     # Data filtering
