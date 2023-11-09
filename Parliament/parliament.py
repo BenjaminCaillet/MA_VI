@@ -54,30 +54,33 @@ french_to_german = {
 party_colors = ['#000000', '#ffed00', '#64a12d', '#be3075', '#eb001f', '#009ee0']
 
 # Party colors
+# Source: <https://en.wikipedia.org/wiki/List_of_political_parties_in_Switzerland#Names_in_the_national_languages>
+# Source: <https://www.bfs.admin.ch/asset/en/27285176> 
+# ANCIENNES LISTE - Utiliser info.py/colors_from_french_party
 party_colors_dict = {
-    "PLR": "#0022BB",
-    "PDC": "#888800",
-    "PS": "#992244",
-    "UDC": "#009900",
-    "PL": "#0022BB",
-    "AdI": "#999999",
-    "PEV": "#666622",
-    "PCS": "#449922",
-    "PVL": "#229922",
-    "PBD": "#aa3388",
-    "PST": "#999999",
-    "PSA": "#009900",
-    "POCH": "#999999",
-    "PES": "#999999",
-    "AVF": "#009900",
-    "Sol.": "#770000",
-    "Rép.": "#999999",
-    "DS": "#009900",
-    "UDF": "#222222",
-    "PSL": "#999999",
-    "Lega": "#000044",
-    "MCR": "#999999",
-    "Sép.": "#999999",
+    "PLR": "#0022BB",   # PLR - Parti Libéral Radical (PL + PRD) -> Note: PRD = PLR, en allemand "FDP" dans les deux cas
+    "PDC": "#888800",   # PDC - Parti Démocrate Chrétien - Maintenant 'Le Centre'
+    "PS": "#992244",   # PS/PSS - Parti Socialiste
+    "UDC": "#009900",   # UDC - Union Démocratique du Centre
+    "PL": "#0022BB",  # Parti libéral suisse
+    "AdI": "#999999", # Alliance des indépendants - Fondé par Duttweiler (Migros)... pardon?
+    "PEV": "#666622", # Parti évangeliste
+    "PCS": "#449922",  # Parti Chrétien Social (et non pas Parti Communiste Suisse)
+    "PVL": "#229922",   # Parti Vert Libéral
+    "PBD": "#aa3388",  # Parti Bourgois Démocrate - aujourd'hui Le Centre avec PDC
+    "PST": "#999999", # Parti Suisse du travail
+    "PSA": "#330000", # Partito socialista autonomo (TI) (1970 - 1988). depuis 1992 : membre du PS suisse.
+    "POCH": "#999999",  # "Organisation progresssistes de Suisse" - Aujourd'hui SolédiaritéS, PST/POP et 'La Gauche'
+    "PES": "#999999",   #  "Parti Ecologiste Suisse" -> Les Verts
+    "AVF": "#009900",   # Alternative socialiste verte et groupements féministes (étiquette commune, 1975 - 2010), Gauche alternative.
+    "Sol.": "#770000", # SolidaritéS
+    "Rép.": "#999999",  # Parti républicain
+    "DS": "#009900", # Démocrates suisses
+    "UDF": "#222222", # Union Démocratique Suisse
+    "PSL": "#330000",  # Parti Suisse de la Liberté (nom temporaire PA Parti Suisse automobilistes)
+    "Lega": "#000044", # Lega - Ligue du Tessin
+    "MCR": "#fee801", # "Mouvement Citoyens Romands", mais principalement MCG (Genève)
+    "Sép.": "#999999", # Séparatistes - principalement jura bernois
     "Autres": "#444444"
 }
 
