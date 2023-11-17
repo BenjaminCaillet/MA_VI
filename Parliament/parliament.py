@@ -8,6 +8,8 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import numpy as np
 import poli_sci_kit
 
+from util.info import colors_from_french_party
+
 import os.path
 
 
@@ -110,7 +112,7 @@ def plot_parliament(data_df, jahr_list, jahr):
     trad_german_to_french = {v: k for k, v in french_to_german.items()}
 
     df_sieges_par_parti["Partis"] =  df_sieges_par_parti["Partei"].map(trad_german_to_french)
-    df_sieges_par_parti["Couleur"] = df_sieges_par_parti["Partis"].map(party_colors_dict)
+    df_sieges_par_parti["Couleur"] = df_sieges_par_parti["Partis"].map(colors_from_french_party)
 
     #print("liste couleur:\n", df_sieges_par_canton_parti["Couleur"],df_sieges_par_canton_parti["Partis"])
 
@@ -120,15 +122,16 @@ def plot_parliament(data_df, jahr_list, jahr):
     print(df_sieges_par_parti.head(7))
     print(df_sieges_par_parti["Couleur"].tolist())
 
-    ax2 = poli_sci_kit.plot.parliament(
+    fig, ax = plt.subplots(nrows=1,ncols=1)
+
+    ax= poli_sci_kit.plot.parliament(
     allocations=df_sieges_par_parti["DATA"].tolist(),
     labels=df_sieges_par_parti["Partei"].tolist(),
     colors=df_sieges_par_parti["Couleur"].tolist(),
     style="semicircle",
-    num_rows=8,
+    num_rows=7,  #8  # for ref: - 7 rows - https://www.parlament.ch/fr/organe/conseil-national/plan-sieges-cn
     marker_size=120,
     speaker=False
     )
 
-    return ax2.figure
-
+    return fig
