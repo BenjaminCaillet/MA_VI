@@ -80,16 +80,16 @@ def plot_obj(switzerland,name_data="DATA",title='Carte de la Suisse'):
     # define the size of plot
     fig, ax = plt.subplots(1, 1, figsize=(10, 10))
     # plot the map
-    switzerland.plot(column=name_data, ax=ax, cmap="viridis", legend=True)
-    """
     cmap = ListedColormap([colors_from_french_party[legend] for legend in switzerland["Partis"]])
     switzerland.plot(column=name_data,ax=ax, cmap=cmap, legend=True)
 
-    legend_labels = [legend for legend in switzerland["Partis"]]
-    handles = [plt.Line2D([0], [0], marker='o', color='w', markerfacecolor=colors_from_french_party[legend], markersize=10) for
-               legend in switzerland["Partis"]]
-    ax.legend(handles, legend_labels, title='Légendes', loc='upper right')
-    """
+    unique_legends = list(set(switzerland["Partis"]))  # Supprimer les duplicatas
+    legend_handles = []
+    for legend in unique_legends:
+        color = colors_from_french_party[legend]
+        handle = plt.Line2D([0], [0], marker='o', color='w', markerfacecolor=color, markersize=10)
+        legend_handles.append((handle, legend))
+    ax.legend(*zip(*legend_handles), title='Légendes', loc='upper right')
     # add a limite of canton
     switzerland.boundary.plot(ax=ax, color='black', linewidth=0.5)
     # add legend
