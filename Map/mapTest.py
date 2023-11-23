@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from pyaxis import pyaxis
 import pandas as pd
 import map as gc
-from info import french_to_german, party_list_complet, party_list
+from util.info import french_to_german, party_list_complet, party_list
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 # Setting up theme of the app

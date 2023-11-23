@@ -15,6 +15,7 @@ px = pyaxis.parse(uri = fp , encoding = 'ANSI')
 #store data as pandas dataframe
 data_df = px['DATA']
 data_df=pd.DataFrame(data_df)
+
 def updatePlot():
     type =      type_combobox.get()
     party =     party_combobox.get()
@@ -27,14 +28,11 @@ def updatePlot():
     else:
         party_t=french_to_german_party[party]
         fig=gc.plot_nb_elu_party(data_df, party_t, "2015", "2019")
-
-
-
-
     canvas = FigureCanvasTkAgg(fig, master=window)
     canvas_widget = canvas.get_tk_widget()
     canvas_widget.grid(row=5, column=0, columnspan=20)
     canvas.draw()
+    
 def _quit():
     window.quit()
     window.destroy()

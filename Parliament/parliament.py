@@ -14,7 +14,7 @@ import os.path
 
 
 # Setting up theme of the app
-customtkinter.set_appearance_mode("light")
+#customtkinter.set_appearance_mode("light")
 
 # Parse the dataset
 dossier_script = os.path.dirname(__file__) # TODO: Fix - without os.path

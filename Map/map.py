@@ -5,8 +5,7 @@ import numpy as np
 from pyaxis import pyaxis
 import pandas as pd
 
-from info import dictionary_canton_to_french, colors_from_french_party,french_to_german_party
-
+from Map.info import dictionary_canton_to_french, colors_from_french_party,french_to_german_party
 
 def creat_geoswitz(path):
     #download the map
@@ -179,7 +178,7 @@ def plot_best_party(dataset,year):
         mini_tables[i] = mini_table.loc[indice_max]
     df_best_Partei_by_kanton=pd.DataFrame(mini_tables)
     df_best_Partei_by_kanton["Kanton"] = transormation_vo_French(df_best_Partei_by_kanton["Kanton"])
-    switzerland = creat_geoswitz('mapSwiss.geojson')
+    switzerland = creat_geoswitz('Dataset/swiss.geojson')
     switzerland_data = fusion_data_map(switzerland, df_best_Partei_by_kanton,1)
     trad_german_to_french = {v: k for k, v in french_to_german_party.items()}
     switzerland_data["Partis"] = switzerland_data["Partei"].map(trad_german_to_french)
