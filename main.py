@@ -6,6 +6,7 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from TimeSeries.timeSeries import plot_party, plot_gender, party_list, party_list_complet, french_to_german
 from Parliament.parliament import plot_parliament
 from util.translate import party_french_to_german
+
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import pandas as pd
 import Map.map as gc
@@ -39,7 +40,7 @@ def updatePlotParlement():
     #First plot
     jahr_list = ["2019","2015","2011","2007","2003","1999","1995","1991","1987","1983","1979","1975","1971"]
     jahr = jahr_combobox_1.get()
-    figParlement_1 = plot_parliament(data_df, jahr_list, jahr)
+    figParlement_1 = plot_parliament(data_df, jahr, point_size=100)
     figParlement_1.set_size_inches(5,2.5)
 
     canvasParlement_1 = FigureCanvasTkAgg(figParlement_1, master=window)
@@ -49,7 +50,7 @@ def updatePlotParlement():
     
     #Second plot
     jahr = jahr_combobox_2.get()
-    figParlement_2 = plot_parliament(data_df, jahr_list, jahr)
+    figParlement_2 = plot_parliament(data_df, jahr, point_size=100)
     figParlement_2.set_size_inches(5,2.5)
 
     canvasParlement_2 = FigureCanvasTkAgg(figParlement_2, master=window)
