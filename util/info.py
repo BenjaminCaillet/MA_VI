@@ -1,7 +1,7 @@
 
 # Party order
 
-left_order_french = ["PST","Sol.","AVF","POCH","PES","PSA","PS"]
+left_order_french = ["PST","Sol.","AVF","POCH","PSA","PS","PES"]
 center_order_french = ["PCS","PDC","PBD","AdI","PEV","Sép.","Autres"]
 right_order_french = ["PVL","PLR","PL","UDC","MCR","Rép.","DS","UDF","PSL","Lega"]
 left_right_order_french_party = left_order_french + center_order_french + right_order_french
