@@ -4,7 +4,11 @@ import matplotlib.pyplot as plt
 import customtkinter as tk
 import customtkinter
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-from parliament import plot_parliament, party_colors_dict, french_to_german
+from parliament import plot_parliament
+import sys
+sys.path.append('.')
+from util.info import colors_from_french_party, left_right_order_french_party
+from util.translate import party_french_to_german
 
 import os.path
 

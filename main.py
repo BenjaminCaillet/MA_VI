@@ -4,7 +4,8 @@ import customtkinter as tk
 import customtkinter
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from TimeSeries.timeSeries import plot_party, plot_gender, party_list, party_list_complet, french_to_german
-from Parliament.parliament import plot_parliament, party_colors_dict, french_to_german
+from Parliament.parliament import plot_parliament
+from util.translate import party_french_to_german
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import pandas as pd
 import Map.map as gc
