@@ -6,7 +6,7 @@ from matplotlib.ticker import MultipleLocator
 from pyaxis import pyaxis
 import pandas as pd
 
-from info import dictionary_canton_to_french, colors_from_french_party,french_to_german_party
+from Map.info import dictionary_canton_to_french, colors_from_french_party,french_to_german_party
 
 
 def creat_geoswitz(path):
@@ -131,7 +131,7 @@ def plot_nb_elu_party(dataset,party,year_old,year_new):
 
     subset_com["DATA"]=data_com
     subset_com["Kanton"] = transormation_vo_French(subset_com["Kanton"])
-    switzerland = creat_geoswitz('mapSwiss.geojson')
+    switzerland = creat_geoswitz('Dataset/Swiss.geojson')
     switzerland_data = fusion_data_map(switzerland, subset_com)
 
     trad_german_to_french = {v: k for k, v in french_to_german_party.items()}
@@ -166,7 +166,7 @@ def plot_diff_gender(dataset,gender,year_old,year_new):
 
     subset_com["DATA"]=data_com
     subset_com["Kanton"] = transormation_vo_French(subset_com["Kanton"])
-    switzerland = creat_geoswitz('mapSwiss.geojson')
+    switzerland = creat_geoswitz('Dataset/Swiss.geojson')
     switzerland_data = fusion_data_map(switzerland, subset_com)
     if gender == "Mann":
         n1="Evolution de la représentation masculine"
@@ -200,7 +200,7 @@ def plot_best_party(dataset,year):
 
     df_best_Partei_by_kanton["Kanton"] = transormation_vo_French(df_best_Partei_by_kanton["Kanton"])
 
-    switzerland = creat_geoswitz('mapSwiss.geojson')
+    switzerland = creat_geoswitz('Dataset/Swiss.geojson')
     switzerland_data = fusion_data_map(switzerland, df_best_Partei_by_kanton,1)
     trad_german_to_french = {v: k for k, v in french_to_german_party.items()}
     switzerland_data["Partis"] = switzerland_data["Partei"].map(trad_german_to_french)
