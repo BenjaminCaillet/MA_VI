@@ -11,8 +11,8 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import numpy as np
 import poli_sci_kit
 
-#from util.info import colors_from_french_party, left_right_order_french_party
-from info import colors_from_french_party, left_right_order_french_party
+from util.info import colors_from_french_party, left_right_order_french_party
+#from info import colors_from_french_party, left_right_order_french_party
 
 import os.path
 
