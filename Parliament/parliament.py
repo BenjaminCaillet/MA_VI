@@ -4,11 +4,15 @@ import matplotlib.pyplot as plt
 from tkinter import *
 import customtkinter as tk
 import customtkinter
+
+import pandas as pd
+
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import numpy as np
 import poli_sci_kit
 
-from util.info import colors_from_french_party
+#from util.info import colors_from_french_party, left_right_order_french_party
+from info import colors_from_french_party, left_right_order_french_party
 
 import os.path
 
@@ -119,6 +123,30 @@ def plot_parliament(data_df, jahr_list, jahr):
     # Enlever les partis non élus
     df_sieges_par_parti = df_sieges_par_parti[df_sieges_par_parti['DATA'] != 0]
 
+    print("unsorted\n")
+    print(df_sieges_par_parti.head(7))
+
+    print("\nTEST\n")
+    print("ORDER")
+    print(left_right_order_french_party)
+    print("LIST")
+    print(df_sieges_par_parti['Partis'])
+
+    # Obtenez les indices des éléments triés en fonction de l'ordre spécifié
+    #indices_sorted = np.argsort(np.searchsorted(left_right_order_french_party, df_sieges_par_parti['Partis']))
+
+    # Réorganisez votre tableau en fonction des indices triés
+    #df_sieges_par_parti = df_sieges_par_parti.iloc[indices_sorted].reset_index(drop=True)
+    #df_sieges_par_parti = df_sieges_par_parti.iloc[indices_sorted, :].reset_index(drop=True, inplace=True)
+
+    df_sieges_par_parti['Partis_cat'] = pd.Categorical(
+            df_sieges_par_parti['Partis'], 
+            categories=left_right_order_french_party, 
+            ordered=True
+        )
+    df_sieges_par_parti.sort_values('Partis_cat',inplace=True)
+
+    print("sorted\n")
     print(df_sieges_par_parti.head(7))
     print(df_sieges_par_parti["Couleur"].tolist())
 

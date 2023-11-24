@@ -1,5 +1,10 @@
 
+# Party order
 
+left_order_french = ["PST","Sol.","AVF","POCH","PES","PSA","PS"]
+center_order_french = ["PCS","PDC","PBD","AdI","PEV","Sép.","Autres"]
+right_order_french = ["PVL","PLR","PL","UDC","MCR","Rép.","DS","UDF","PSL","Lega"]
+left_right_order_french_party = left_order_french + center_order_french + right_order_french
 
 
 # Party colors
@@ -8,7 +13,7 @@
 colors_from_french_party = {
     "PLR": "#0174DF",   # PLR - Parti Libéral Radical (PL + PRD) -> Note: PRD = PLR, en allemand "FDP" dans les deux cas
     "PDC": "#FE9A2E",   # PDC - Parti Démocrate Chrétien - Maintenant 'Le Centre'
-    "PS": "#992244",   # PS/PSS - Parti Socialiste
+    "PS": "#992222",   # PS/PSS - Parti Socialiste
     "UDC": "#088a4b",   # UDC - Union Démocratique du Centre
     "PL": "#0174DF",  # Parti libéral suisse
     "AdI": "#999999", # Alliance des indépendants - Fondé par Duttweiler (Migros)... pardon?
