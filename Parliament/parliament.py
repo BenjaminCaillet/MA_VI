@@ -94,7 +94,7 @@ french_to_german = {
 #     "Autres": "#444444"
 # }
 
-def plot_parliament(data_df, jahr_list, jahr):
+def plot_parliament(data_df, jahr, point_size=120):
 
     # seat_allocations = [20,10]
     # parties = ["one","two"]
@@ -162,7 +162,7 @@ def plot_parliament(data_df, jahr_list, jahr):
     colors=df_sieges_par_parti["Couleur"].tolist(),
     style="semicircle",
     num_rows=7,  #8  # for ref: - 7 rows - https://www.parlament.ch/fr/organe/conseil-national/plan-sieges-cn
-    marker_size=120,
+    marker_size=point_size,
     speaker=False
     )
     
