@@ -29,11 +29,10 @@ def updatePlotTime(selected_party):
         figTime = plot_party(data_df,translated_list, canton)
     else :
         figTime = plot_gender(data_df, canton)
-    figTime.set_size_inches(15,4)
+    figTime.set_size_inches(14,4)
     canvasTime = FigureCanvasTkAgg(figTime, master=window)
     canvas_widget_time = canvasTime.get_tk_widget()
     canvas_widget_time.grid(row=1, column=5, columnspan=15, rowspan=10)
-    #print(translated_list)
     canvasTime.draw()
 
 def updatePlotParlement():
@@ -136,19 +135,20 @@ def _quit():
 window = tk.CTk()
 window.after(0, lambda:window.state('zoomed'))
 window.title("Sélection du parti et du canton")
-window.configure()
-window.configure(background='white')
+
+canvas= tk.CTkCanvas(window,width=1920, height=1080, bg='white')
+canvas.grid(row=0, column=0, columnspan=21,rowspan=25)
 
 # PLOT PART
 
 # Button to open the popup
-btn = tk.CTkButton(window, text="Sélection des partis", command=open_selection_popup)
+btn = tk.CTkButton(window, text="Sélection des partis", command=open_selection_popup,bg_color="white")
 btn.grid(row=2, column=3, padx=0, pady=20)
 
 selected_party = party_list
 
 # Canton dropdown
-canton_label = tk.CTkLabel(window, text="Canton:")
+canton_label = tk.CTkLabel(window, text="Canton:",bg_color="white")
 canton_label.grid(row=4, column=2, padx=0, pady=20)
 canton_list = ["Schweiz","Zürich","Bern / Berne","Luzern","Uri","Schwyz","Obwalden","Nidwalden","Glarus","Zug","Fribourg / Freiburg","Solothurn","Basel-Stadt","Basel-Landschaft","Schaffhausen","Appenzell Ausserrhoden","Appenzell Innerrhoden","St. Gallen","Graubünden / Grigioni / Grischun","Aargau","Thurgau","Ticino","Vaud","Valais / Wallis","Neuchâtel","Genève","Jura"]
 canton_combobox = tk.CTkComboBox(window, values=canton_list,state="readonly")
@@ -156,14 +156,14 @@ canton_combobox.grid(row=4, column=3, padx=0, pady=20)
 canton_combobox.set("Schweiz")
 
 # Gender dropdown
-gender_label = tk.CTkLabel(window, text="Genre:")
+gender_label = tk.CTkLabel(window, text="Genre:",bg_color="white")
 gender_label.grid(row=5, column=2, padx=0, pady=20)
 gender_combobox = tk.CTkComboBox(window, values=["Total","Homme/Femme"],state="readonly")
 gender_combobox.grid(row=5, column=3, padx=0, pady=20)
 gender_combobox.set("Total")
 
 # Plot button
-plot_button = tk.CTkButton(window, text="Plot", command=lambda: updatePlotTime(selected_party))
+plot_button = tk.CTkButton(window, text="Plot", command=lambda: updatePlotTime(selected_party),bg_color="white")
 plot_button.grid(row=6, column=3, columnspan=1, pady=20)
 
 # PARLEMENT PART
@@ -171,26 +171,26 @@ plot_button.grid(row=6, column=3, columnspan=1, pady=20)
 jahr_list = ["2019","2015","2011","2007","2003","1999","1995","1991","1987","1983","1979","1975","1971"]
 
 # Jahr dropdown
-jahr_label_1 = tk.CTkLabel(window, text="Année:")
+jahr_label_1 = tk.CTkLabel(window, text="Année:",bg_color="white")
 jahr_label_1.grid(row=16, column=2, padx=0, pady=20)
 jahr_combobox_1 = tk.CTkComboBox(window, values=jahr_list)
 jahr_combobox_1.grid(row=16, column=3, padx=0, pady=20)
 jahr_combobox_1.set("2015")
 
-jahr_label_2 = tk.CTkLabel(window, text="Année:")
+jahr_label_2 = tk.CTkLabel(window, text="Année:",bg_color="white")
 jahr_label_2.grid(row=17, column=2, padx=0, pady=20)
 jahr_combobox_2 = tk.CTkComboBox(window, values=jahr_list)
 jahr_combobox_2.grid(row=17, column=3, padx=0, pady=20)
 jahr_combobox_2.set("2019")
 
 # Plot button
-plot_button = tk.CTkButton(window, text="Plot", command=updatePlotParlement)
+plot_button = tk.CTkButton(window, text="Plot", command=updatePlotParlement,bg_color="white")
 plot_button.grid(row=18, column=3, columnspan=1, pady=20)
 
 # MAP PART
 
 # Type map
-type_map_label = tk.CTkLabel(window, text="Type of map:")
+type_map_label = tk.CTkLabel(window, text="Type of map:",bg_color="white")
 type_map_label.grid(row=16, column=11, padx=0, pady=20)
 
 type_map_combobox = tk.CTkComboBox(window, values=type_map_list, state="readonly")
@@ -198,7 +198,7 @@ type_map_combobox.grid(row=16, column=12, padx=0, pady=20)
 type_map_combobox.set("Best_party")
 
 # party dropdown
-party_map_label = tk.CTkLabel(window, text="Canton:")
+party_map_label = tk.CTkLabel(window, text="Canton:",bg_color="white")
 party_map_label.grid(row=17, column=11, padx=0, pady=20)
 
 party_map_combobox = tk.CTkComboBox(window, values=party_list, state="readonly")
@@ -207,15 +207,15 @@ party_map_combobox.set("PS")
 
 
 # Gender dropdown
-gender_map_label = tk.CTkLabel(window, text="Genre:")
+gender_map_label = tk.CTkLabel(window, text="Genre:",bg_color="white")
 gender_map_label.grid(row=18, column=11, padx=0, pady=20)
 
-gender_map_combobox = tk.CTkComboBox(window, values=gender_list, state="readonly")
+gender_map_combobox = tk.CTkComboBox(window, values=gender_list, state="readonly",bg_color="white")
 gender_map_combobox.grid(row=18, column=12, padx=0, pady=20)
 gender_map_combobox.set("Homme")
 
 # Plot button
-plot_map_button = tk.CTkButton(window, text="Plot", command=lambda: updatePlotMap())
+plot_map_button = tk.CTkButton(window, text="Plot", command=lambda: updatePlotMap(),bg_color="white")
 plot_map_button.grid(row=20, column=12, columnspan=2, pady=20)
 
 updatePlotParlement()
