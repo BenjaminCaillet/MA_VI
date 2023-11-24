@@ -12,7 +12,7 @@ colors_from_french_party = {
     "PEV": "#ffd735", # Parti évangeliste
     "PCS": "#088A85",  # Parti Chrétien Social (et non pas Parti Communiste Suisse)
     "PVL": "#9AFE2E",   # Parti Vert Libéral
-    "PBD": "#FE9A2E",  # Parti Bourgois Démocrate - aujourd'hui Le Centre avec PDC
+    "PBD": "fed755", #"#FE9A2E",  # Parti Bourgois Démocrate - aujourd'hui Le Centre avec PDC
     "PST": "#FF0921", # Parti Suisse du travail
     "PSA": "#330000", # Partito socialista autonomo (TI) (1970 - 1988). depuis 1992 : membre du PS suisse.
     "POCH": "#FF0921",  # "Organisation progresssistes de Suisse" - Aujourd'hui SolédiaritéS, PST/POP et 'La Gauche'
