@@ -13,8 +13,6 @@ import poli_sci_kit
 
 import sys
 sys.path.append('.')
-#from util.info import colors_from_french_party, left_right_order_french_party
-#from info import colors_from_french_party, left_right_order_french_party
 from util.info import colors_from_french_party, left_right_order_french_party
 from util.translate import party_french_to_german
 
@@ -61,38 +59,8 @@ french_to_german = {
     "Sép.": "Sep.",
     "Autres": "Übrige"
 }
-# party_colors = ['#000000', '#ffed00', '#64a12d', '#be3075', '#eb001f', '#009ee0']
 
-# Party colors
-# Source: <https://en.wikipedia.org/wiki/List_of_political_parties_in_Switzerland#Names_in_the_national_languages>
-# Source: <https://www.bfs.admin.ch/asset/en/27285176> 
-# ANCIENNES LISTE - Utiliser info.py/colors_from_french_party
-# party_colors_dict = {
-#     "PLR": "#0022BB",   # PLR - Parti Libéral Radical (PL + PRD) -> Note: PRD = PLR, en allemand "FDP" dans les deux cas
-#     "PDC": "#888800",   # PDC - Parti Démocrate Chrétien - Maintenant 'Le Centre'
-#     "PS": "#992244",   # PS/PSS - Parti Socialiste
-#     "UDC": "#009900",   # UDC - Union Démocratique du Centre
-#     "PL": "#0022BB",  # Parti libéral suisse
-#     "AdI": "#999999", # Alliance des indépendants - Fondé par Duttweiler (Migros)... pardon?
-#     "PEV": "#666622", # Parti évangeliste
-#     "PCS": "#449922",  # Parti Chrétien Social (et non pas Parti Communiste Suisse)
-#     "PVL": "#229922",   # Parti Vert Libéral
-#     "PBD": "#aa3388",  # Parti Bourgois Démocrate - aujourd'hui Le Centre avec PDC
-#     "PST": "#999999", # Parti Suisse du travail
-#     "PSA": "#330000", # Partito socialista autonomo (TI) (1970 - 1988). depuis 1992 : membre du PS suisse.
-#     "POCH": "#999999",  # "Organisation progresssistes de Suisse" - Aujourd'hui SolédiaritéS, PST/POP et 'La Gauche'
-#     "PES": "#999999",   #  "Parti Ecologiste Suisse" -> Les Verts
-#     "AVF": "#009900",   # Alternative socialiste verte et groupements féministes (étiquette commune, 1975 - 2010), Gauche alternative.
-#     "Sol.": "#770000", # SolidaritéS
-#     "Rép.": "#999999",  # Parti républicain
-#     "DS": "#009900", # Démocrates suisses
-#     "UDF": "#222222", # Union Démocratique Suisse
-#     "PSL": "#330000",  # Parti Suisse de la Liberté (nom temporaire PA Parti Suisse automobilistes)
-#     "Lega": "#000044", # Lega - Ligue du Tessin
-#     "MCR": "#fee801", # "Mouvement Citoyens Romands", mais principalement MCG (Genève)
-#     "Sép.": "#999999", # Séparatistes - principalement jura bernois
-#     "Autres": "#444444"
-# }
+
 
 def plot_parliament(data_df, jahr, point_size=120):
 
@@ -112,10 +80,6 @@ def plot_parliament(data_df, jahr, point_size=120):
     
     # Combine by party
     df_sieges_par_parti = elect_filtered.groupby(['Partei'])['DATA'].sum().reset_index() 
-    # print(df_sieges_par_canton_parti.head(7))
-    # print("somme", df_sieges_par_canton_parti['DATA'].sum())
-    # print("liste partis:\n", df_sieges_par_canton_parti["Partei"])
-
 
     trad_german_to_french = {v: k for k, v in party_french_to_german.items()}
 
@@ -127,21 +91,11 @@ def plot_parliament(data_df, jahr, point_size=120):
     # Enlever les partis non élus
     df_sieges_par_parti = df_sieges_par_parti[df_sieges_par_parti['DATA'] != 0]
 
-    print("unsorted\n")
-    print(df_sieges_par_parti.head(7))
-
-    print("\nTEST\n")
-    print("ORDER")
-    print(left_right_order_french_party)
-    print("LIST")
-    print(df_sieges_par_parti['Partis'])
-
-    # Obtenez les indices des éléments triés en fonction de l'ordre spécifié
-    #indices_sorted = np.argsort(np.searchsorted(left_right_order_french_party, df_sieges_par_parti['Partis']))
-
-    # Réorganisez votre tableau en fonction des indices triés
-    #df_sieges_par_parti = df_sieges_par_parti.iloc[indices_sorted].reset_index(drop=True)
-    #df_sieges_par_parti = df_sieges_par_parti.iloc[indices_sorted, :].reset_index(drop=True, inplace=True)
+    # print("unsorted\n")
+    # print(df_sieges_par_parti.head(7))
+    # print("\nTEST\n")
+    # print(left_right_order_french_party)
+    # print(df_sieges_par_parti['Partis'])
 
     df_sieges_par_parti['Partis_cat'] = pd.Categorical(
             df_sieges_par_parti['Partis'], 
@@ -150,9 +104,9 @@ def plot_parliament(data_df, jahr, point_size=120):
         )
     df_sieges_par_parti.sort_values('Partis_cat',inplace=True)
 
-    print("sorted\n")
-    print(df_sieges_par_parti.head(7))
-    print(df_sieges_par_parti["Couleur"].tolist())
+    # print("sorted\n")
+    # print(df_sieges_par_parti.head(7))
+    # print(df_sieges_par_parti["Couleur"].tolist())
 
     fig, ax = plt.subplots(nrows=1,ncols=1)
 
