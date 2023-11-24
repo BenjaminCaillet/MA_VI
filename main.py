@@ -28,7 +28,7 @@ def updatePlotTime(selected_party):
         figTime = plot_party(data_df,translated_list, canton)
     else :
         figTime = plot_gender(data_df, canton)
-    figTime.set_size_inches(15,5)
+    figTime.set_size_inches(15,4)
     canvasTime = FigureCanvasTkAgg(figTime, master=window)
     canvas_widget_time = canvasTime.get_tk_widget()
     canvas_widget_time.grid(row=1, column=5, columnspan=15, rowspan=10)
@@ -37,17 +37,26 @@ def updatePlotTime(selected_party):
 
 def updatePlotParlement():
     
-    #translated_list = [french_to_german[partei] for partei in selected_jahr]
+    #First plot
     jahr_list = ["2019","2015","2011","2007","2003","1999","1995","1991","1987","1983","1979","1975","1971"]
-    jahr = jahr_combobox.get()
-    figParlement = plot_parliament(data_df, jahr_list, jahr)
-    figParlement.set_size_inches(7,4)
+    jahr = jahr_combobox_1.get()
+    figParlement_1 = plot_parliament(data_df, jahr_list, jahr)
+    figParlement_1.set_size_inches(5,2.5)
 
-    canvasParlement = FigureCanvasTkAgg(figParlement, master=window)
-    canvas_widget_parlement = canvasParlement.get_tk_widget()
-    canvas_widget_parlement.grid(row=16, column=5, columnspan=5,rowspan=10)
-    #print(jahr_list)
-    canvasParlement.draw()
+    canvasParlement_1 = FigureCanvasTkAgg(figParlement_1, master=window)
+    canvas_widget_parlement_1 = canvasParlement_1.get_tk_widget()
+    canvas_widget_parlement_1.grid(row=16, column=5, columnspan=5,rowspan=5)
+    canvasParlement_1.draw()
+    
+    #Second plot
+    jahr = jahr_combobox_2.get()
+    figParlement_2 = plot_parliament(data_df, jahr_list, jahr)
+    figParlement_2.set_size_inches(5,2.5)
+
+    canvasParlement_2 = FigureCanvasTkAgg(figParlement_2, master=window)
+    canvas_widget_parlement_2 = canvasParlement_2.get_tk_widget()
+    canvas_widget_parlement_2.grid(row=21, column=5, columnspan=5,rowspan=5)
+    canvasParlement_2.draw()
     
 def updatePlotMap():
     type =      type_map_combobox.get()
@@ -64,7 +73,7 @@ def updatePlotMap():
     fig.set_size_inches(7,4)
     canvas = FigureCanvasTkAgg(fig, master=window)
     canvas_widget = canvas.get_tk_widget()
-    canvas_widget.grid(row=16, column=14, columnspan=7,rowspan=21)
+    canvas_widget.grid(row=16, column=14, columnspan=7,rowspan=8)
     canvas.draw()
     
 def open_selection_popup():
@@ -158,17 +167,24 @@ plot_button.grid(row=6, column=3, columnspan=1, pady=20)
 
 # PARLEMENT PART
 
-# Jahr dropdown
-jahr_label = tk.CTkLabel(window, text="Année:")
-jahr_label.grid(row=16, column=2, padx=0, pady=20)
 jahr_list = ["2019","2015","2011","2007","2003","1999","1995","1991","1987","1983","1979","1975","1971"]
-jahr_combobox = tk.CTkComboBox(window, values=jahr_list)
-jahr_combobox.grid(row=16, column=3, padx=0, pady=20)
-jahr_combobox.set("2019")
+
+# Jahr dropdown
+jahr_label_1 = tk.CTkLabel(window, text="Année:")
+jahr_label_1.grid(row=16, column=2, padx=0, pady=20)
+jahr_combobox_1 = tk.CTkComboBox(window, values=jahr_list)
+jahr_combobox_1.grid(row=16, column=3, padx=0, pady=20)
+jahr_combobox_1.set("2015")
+
+jahr_label_2 = tk.CTkLabel(window, text="Année:")
+jahr_label_2.grid(row=17, column=2, padx=0, pady=20)
+jahr_combobox_2 = tk.CTkComboBox(window, values=jahr_list)
+jahr_combobox_2.grid(row=17, column=3, padx=0, pady=20)
+jahr_combobox_2.set("2019")
 
 # Plot button
 plot_button = tk.CTkButton(window, text="Plot", command=updatePlotParlement)
-plot_button.grid(row=17, column=3, columnspan=1, pady=20)
+plot_button.grid(row=18, column=3, columnspan=1, pady=20)
 
 # MAP PART
 

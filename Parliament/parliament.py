@@ -133,5 +133,7 @@ def plot_parliament(data_df, jahr_list, jahr):
     marker_size=120,
     speaker=False
     )
+    
+    ax.set_title("Parlement Suisse en "+ jahr)
 
     return fig
