@@ -25,18 +25,18 @@ def on_circle_leave(event):
         label.config(text="")  # Clear the label when leaving a circle
 
 # Create a Tkinter window
-root = tk.Tk()
-root.title("Interactive Circles with Label")
+intro = tk.Tk()
+intro.title("Interactive Circles with Label")
 
 # Number of rows and columns in the grid
 rows, columns = 2, 4
 
 # Create a canvas
-canvas = tk.Canvas(root, width=400, height=200)
+canvas = tk.Canvas(intro, width=600, height=400)
 canvas.pack()
 
 # Create a Label at the top
-label = tk.Label(root, text="", font=("Helvetica", 12))
+label = tk.Label(intro, text="", font=("Helvetica", 12))
 label.pack(side=tk.TOP)
 
 # Calculate the spacing between circles
@@ -58,4 +58,4 @@ for row in range(rows):
         canvas.tag_bind(circle_id, "<Leave>", on_circle_leave)
 
 # Start the Tkinter event loop
-root.mainloop()
+intro.mainloop()
