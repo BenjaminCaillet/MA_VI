@@ -66,7 +66,7 @@ def plot_num(switzerland,mode=0,title='Carte de la Suisse'):
     # Create a custom colormap with just two colors: red and blue
     cmap_colors = ['#FF0000', '#FFFFFF', '#00FF00']
     custom_cmap = LinearSegmentedColormap.from_list('CustomRedToGreen', cmap_colors, N=(vmax - vmin) + 1)
-
+    
     #plot the map whit color blue to red
     if mode == 0:
         sw=switzerland.plot(column='DATA', cmap=custom_cmap,ax=ax, legend=False,norm=norm)
@@ -79,7 +79,7 @@ def plot_num(switzerland,mode=0,title='Carte de la Suisse'):
     plt.title(title)
     # Customize the colorbar ticks with integers
     ticks = np.arange(vmin, vmax + 1, 1)
-    cbar = plt.colorbar(sw.get_children()[0], ax=ax, ticks=ticks, orientation='vertical')
+    cbar = plt.colorbar(sw.get_children()[0], ax=ax, ticks=ticks, orientation='vertical',shrink = 0.5)
     return fig
 
 def plot_obj(switzerland,name_data="DATA",title='Carte de la Suisse'):

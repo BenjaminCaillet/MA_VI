@@ -48,17 +48,17 @@ def updatePlotParlement(dateLow,dateHigh):
 
     canvasParlement_1 = FigureCanvasTkAgg(figParlement_1, master=window)
     canvas_widget_parlement_1 = canvasParlement_1.get_tk_widget()
-    canvas_widget_parlement_1.grid(row=3, column=1, columnspan=7,rowspan=20)
+    canvas_widget_parlement_1.grid(row=3, column=13, columnspan=7,rowspan=20)
     canvasParlement_1.draw()
     
     #Second plot
     jahr = dateHigh
-    figParlement_2 = plot_parliament(data_df, jahr, point_size=50)
+    figParlement_2 = plot_parliament(data_df, jahr, point_size=50, legend=True)
     figParlement_2.set_size_inches(5,3)
 
     canvasParlement_2 = FigureCanvasTkAgg(figParlement_2, master=window)
     canvas_widget_parlement_2 = canvasParlement_2.get_tk_widget()
-    canvas_widget_parlement_2.grid(row=13, column=1, columnspan=7,rowspan=20)
+    canvas_widget_parlement_2.grid(row=13, column=13, columnspan=7,rowspan=20)
     canvasParlement_2.draw()
     
 def mapCallback():
@@ -83,13 +83,13 @@ def updatePlotMap(dateLow,dateHigh):
     fig.set_size_inches(8,6)
     canvas = FigureCanvasTkAgg(fig, master=window)
     canvas_widget = canvas.get_tk_widget()
-    canvas_widget.grid(row=7, column=9, columnspan=10,rowspan=20)
+    canvas_widget.grid(row=7, column=5, columnspan=9,rowspan=20)
     canvas.draw()
     
 def open_selection_popup():
     # Create a popup
     popup = tk.CTkToplevel(window)
-    popup.title("Select Party")
+    popup.title("Sélection du parti")
 
     # Set a fixed height
     popup_height = 400
@@ -145,16 +145,12 @@ def find_closest_dates(date_str, jahr_list):
     closest1 = None
     closest2 = None
     
-    for year in jahr_list:
-        if closest1 is None or abs(year - date) < abs(closest1 - date):
-            closest2 = closest1
-            closest1 = year
-        elif closest2 is None or abs(year - date) < abs(closest2 - date):
-            closest2 = year
-    if closest1 < closest2 :
-        temp = closest1
-        closest1 = closest2
-        closest2 = closest1
+    for i in range(len(jahr_list)) :
+        if i > 0 & i < len(jahr_list):
+            if (date > jahr_list[i]) and (date <= jahr_list[i+1]) :
+                closest1 = jahr_list[i+1]
+                closest2 = jahr_list[i]
+                break
         
     return [str(closest1), str(closest2)]
     
@@ -216,26 +212,26 @@ jahr_list = ["2019","2015","2011","2007","2003","1999","1995","1991","1987","198
 
 # Type map
 type_map_label = tk.CTkLabel(window, text="Type de carte:",bg_color="white")
-type_map_label.grid(row=11, column=7, padx=0, pady=0)
+type_map_label.grid(row=11, column=3, padx=0, pady=0)
 
 type_map_combobox = tk.CTkComboBox(window, values=type_map_list, state="readonly", command=lambda value: mapCallback())
-type_map_combobox.grid(row=11, column=8, padx=0, pady=0)
+type_map_combobox.grid(row=11, column=4, padx=0, pady=0)
 type_map_combobox.set("Meilleur parti")
 
 # party dropdown
 party_map_label = tk.CTkLabel(window, text="Parti:",bg_color="white")
-party_map_label.grid(row=12, column=7, padx=0, pady=0)
+party_map_label.grid(row=12, column=3, padx=0, pady=0)
 
 party_map_combobox = tk.CTkComboBox(window, values=party_list, state="readonly", command=lambda value: mapCallback())
-party_map_combobox.grid(row=12, column=8, padx=0, pady=0)
+party_map_combobox.grid(row=12, column=4, padx=0, pady=0)
 party_map_combobox.set("PS")
 
 # Gender dropdown
 gender_map_label = tk.CTkLabel(window, text="Genre:",bg_color="white")
-gender_map_label.grid(row=13, column=7, padx=0, pady=0)
+gender_map_label.grid(row=13, column=3, padx=0, pady=0)
 
 gender_map_combobox = tk.CTkComboBox(window, values=gender_list, state="readonly",bg_color="white", command=lambda value: mapCallback())
-gender_map_combobox.grid(row=13, column=8, padx=0, pady=0)
+gender_map_combobox.grid(row=13, column=4, padx=0, pady=0)
 gender_map_combobox.set("Homme")
 
 updatePlotTime(selected_party)

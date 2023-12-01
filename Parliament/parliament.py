@@ -62,7 +62,7 @@ french_to_german = {
 
 
 
-def plot_parliament(data_df, jahr, point_size=100):
+def plot_parliament(data_df, jahr, point_size=100, legend=False):
 
     # seat_allocations = [20,10]
     # parties = ["one","two"]
@@ -119,19 +119,19 @@ def plot_parliament(data_df, jahr, point_size=100):
     marker_size=point_size,
     speaker=False
     )
-    
-    ax.legend(
-    labels=df_sieges_par_parti["Partei"].tolist(),
-    title="",
-    title_fontsize=10,
-    fontsize=8,
-    ncol=6,
-    loc='upper center',
-    bbox_to_anchor=(0.5, 0.12),
-    frameon=False,
-    facecolor="#ffffff",
-    framealpha=1,
-    )
+    if legend :
+        ax.legend(
+        labels=df_sieges_par_parti["Partei"].tolist(),
+        title="",
+        title_fontsize=10,
+        fontsize=8,
+        ncol=7,
+        loc='upper center',
+        bbox_to_anchor=(0.5, 0.12),
+        frameon=False,
+        facecolor="#ffffff",
+        framealpha=1,
+        )
     
     ax.set_title("Parlement Suisse en "+ jahr)
 
