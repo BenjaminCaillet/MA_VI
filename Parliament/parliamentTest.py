@@ -32,8 +32,8 @@ def updatePlot():
     #translated_list = [french_to_german[partei] for partei in selected_jahr]
     jahr_list = ["2019","2015","2011","2007","2003","1999","1995","1991","1987","1983","1979","1975","1971"]
     jahr = jahr_combobox.get()
-    fig = plot_parliament(data_df, jahr, point_size=100)
-
+    fig = plot_parliament(data_df, jahr, point_size=50)
+    fig.set_size_inches(5,3)
     canvas = FigureCanvasTkAgg(fig, master=window)
     canvas_widget = canvas.get_tk_widget()
     canvas_widget.grid(row=4, column=0, columnspan=20)

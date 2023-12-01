@@ -107,6 +107,6 @@ canton_list = ["Schweiz", "Zürich", "Bern / Berne", "Luzern", "Uri", "Schwyz", 
                "Fribourg / Freiburg", "Solothurn", "Basel-Stadt", "Basel-Landschaft", "Schaffhausen",
                "Appenzell Ausserrhoden", "Appenzell Innerrhoden", "St. Gallen", "Graubünden / Grigioni / Grischun",
                "Aargau", "Thurgau", "Ticino", "Vaud", "Valais / Wallis", "Neuchâtel", "Genève", "Jura"]
-type_map_list = ["Best_party","Evolution_party","Evolution_genre"]
+type_map_list = ["Meilleur parti","Evolution parti","Evolution genre"]
 
 gender_list = ["Homme","Femme"]

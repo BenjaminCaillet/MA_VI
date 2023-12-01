@@ -62,7 +62,7 @@ french_to_german = {
 
 
 
-def plot_parliament(data_df, jahr, point_size=120):
+def plot_parliament(data_df, jahr, point_size=100):
 
     # seat_allocations = [20,10]
     # parties = ["one","two"]
@@ -70,7 +70,7 @@ def plot_parliament(data_df, jahr, point_size=120):
 
     # Garder que l'année X
     df_jahr = data_df[data_df['Jahr'] == jahr]
-    print(df_jahr.head(6))
+    #print(df_jahr.head(6))
 
     elect = df_jahr[(df_jahr['Partei'] != "Parteien - Total") & (df_jahr['Ergebnisse'] == 'Gewählte') & (df_jahr['Kanton'] != "Schweiz")]
     elect_filtered = elect[elect['Geschlecht'].isin(['Mann', 'Frau'])]
@@ -118,6 +118,19 @@ def plot_parliament(data_df, jahr, point_size=120):
     num_rows=7,  #8  # for ref: - 7 rows - https://www.parlament.ch/fr/organe/conseil-national/plan-sieges-cn
     marker_size=point_size,
     speaker=False
+    )
+    
+    ax.legend(
+    labels=df_sieges_par_parti["Partei"].tolist(),
+    title="",
+    title_fontsize=10,
+    fontsize=8,
+    ncol=6,
+    loc='upper center',
+    bbox_to_anchor=(0.5, 0.12),
+    frameon=False,
+    facecolor="#ffffff",
+    framealpha=1,
     )
     
     ax.set_title("Parlement Suisse en "+ jahr)
