@@ -105,7 +105,7 @@ def plot_obj(switzerland,name_data="DATA",title='Carte de la Suisse'):
     plt.title(title)
     plt.axis('off')
     return fig
-def plot_nb_elu_party(dataset,switzerland,party,year_old,year_new):
+def plot_nb_elu_party(switzerland,dataset,party,year_old,year_new):
     mask_old = dataset["Jahr"] == year_old
     mask_new = dataset["Jahr"] == year_new
     dataset_old = dataset[mask_old].drop(columns="Jahr")

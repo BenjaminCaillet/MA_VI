@@ -27,6 +27,7 @@ def updatePlotTime(selected_party):
     
     translated_list = [french_to_german[party] for party in selected_party]
     canton = canton_combobox.get()
+    year = jahr_textbox_1.get()
     
     if gender_combobox.get() == "Total" :
         figTime = plot_party(data_df,translated_list, canton)
