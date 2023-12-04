@@ -101,3 +101,31 @@ group_colors_from_today_french_groups = {
     "Autres": "#777777"
 }
 
+german_to_french_party = {
+    "Parteien - Total": "Partis - Total",
+    "FDP": "PLR",
+    "CVP": "PDC",
+    "SP": "PS",
+    "SVP": "UDC",
+    "LPS": "PL",
+    "LdU": "AdI",
+    "EVP": "PEV",
+    "CSP": "PCS",
+    "GLP": "PVL",
+    "BDP": "PBD",
+    "PdA": "PST",
+    "PSA": "PSA",
+    "POCH": "POCH",
+    "GPS": "PES",
+    "FGA": "AVF",
+    "Sol.": "Sol.",
+    "Rep.": "Rép.",
+    "SD": "DS",
+    "EDU": "UDF",
+    "FPS": "PSL",
+    "Lega": "Lega",
+    "MCR": "MCR",
+    "Sep.": "Sép.",
+    "Übrige": "Autres"
+}
+

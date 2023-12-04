@@ -199,6 +199,6 @@ def plot_best_party(switzerland,dataset,year):
     trad_german_to_french = {v: k for k, v in french_to_german_party.items()}
     switzerland_data["Partis"] = switzerland_data["Partei"].map(trad_german_to_french)
     switzerland_data["Couleur"] = switzerland_data["Partis"].map(colors_from_french_party)
-    name =  "Meilleur parti par canton en " + year
+    name =  "Plus grand parti par canton en " + year
     fig=plot_obj(switzerland_data,"Partis",name)
     return fig

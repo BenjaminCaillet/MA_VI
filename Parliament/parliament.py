@@ -13,24 +13,21 @@ import poli_sci_kit
 
 import sys
 sys.path.append('.')
-from util.info import colors_from_french_party, left_right_order_french_party
+from util.info import colors_from_french_party, left_right_order_french_party,german_to_french_party
 from util.translate import party_french_to_german
-
-import os.path
-
 
 # Setting up theme of the app
 #customtkinter.set_appearance_mode("light")
 
 # Parse the dataset
-dossier_script = os.path.dirname(__file__) # TODO: Fix - without os.path
-fp = os.path.join(dossier_script, r"../Dataset/Dataset.px")
-print(fp)
+#dossier_script = os.path.dirname(__file__) # TODO: Fix - without os.path
+#fp = os.path.join(dossier_script, r"../Dataset/Dataset.px")
+#print(fp)
 
 # fp = r"../MA_VI/Dataset/Dataset.px"
 
-px = pyaxis.parse(uri=fp, encoding='ANSI')
-data_df = px['DATA']
+#px = pyaxis.parse(uri=fp, encoding='ANSI')
+#data_df = px['DATA']
 
 french_to_german = {
     "Partis - Total": "Parteien - Total",
@@ -60,8 +57,6 @@ french_to_german = {
     "Autres": "Übrige"
 }
 
-
-
 def plot_parliament(data_df, jahr, point_size=100, legend=False):
 
     # seat_allocations = [20,10]
@@ -85,8 +80,6 @@ def plot_parliament(data_df, jahr, point_size=100, legend=False):
 
     df_sieges_par_parti["Partis"] =  df_sieges_par_parti["Partei"].map(trad_german_to_french)
     df_sieges_par_parti["Couleur"] = df_sieges_par_parti["Partis"].map(colors_from_french_party)
-
-    #print("liste couleur:\n", df_sieges_par_canton_parti["Couleur"],df_sieges_par_canton_parti["Partis"])
 
     # Enlever les partis non élus
     df_sieges_par_parti = df_sieges_par_parti[df_sieges_par_parti['DATA'] != 0]
@@ -120,12 +113,13 @@ def plot_parliament(data_df, jahr, point_size=100, legend=False):
     speaker=False
     )
     if legend :
+        partyNames = df_sieges_par_parti["Partei"].replace(german_to_french_party)
         ax.legend(
-        labels=df_sieges_par_parti["Partei"].tolist(),
+        labels=partyNames.tolist(),
         title="",
         title_fontsize=10,
         fontsize=8,
-        ncol=7,
+        ncol=6,
         loc='upper center',
         bbox_to_anchor=(0.5, 0.12),
         frameon=False,

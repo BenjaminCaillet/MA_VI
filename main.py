@@ -10,8 +10,13 @@ from util.translate import party_french_to_german
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import pandas as pd
 import Map.map as gc
-from Map.info import french_to_german_party, party_list_complet, party_list,canton_list,type_map_list,gender_list,french_to_german_gender
+from Map.info import french_to_german_party, party_list_complet, party_list,canton_list,type_map_list,gender_list,french_to_german_gender,dictionary_canton_to_german
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+
+events = ["Crise 19xx","Crise 20xx","Crise yyyy","Crise ABCD","1234","5678","Un événement important et long","Ceci"]
+dates = ["1999","2000","2001","2002","2003","2004","2005","2006"]
+events_colors = ["#84848a"] * 4 + ["#84848a"] * 4
+events_colors_hover = ["#5f5f63"] * 4 + ["#5f5f63"] * 4
 
 # Setting up theme of the app
 customtkinter.set_appearance_mode("light")
@@ -27,16 +32,17 @@ def updatePlotTime(selected_party):
     
     translated_list = [french_to_german[party] for party in selected_party]
     canton = canton_combobox.get()
+    canton = dictionary_canton_to_german[canton]
     year = jahr_textbox_1.get()
     
     if gender_combobox.get() == "Total" :
-        figTime = plot_party(data_df,translated_list, canton)
+        figTime = plot_party(data_df,translated_list, canton,year)
     else :
-        figTime = plot_gender(data_df, canton)
+        figTime = plot_gender(data_df, canton,year)
     figTime.set_size_inches(14,4)
     canvasTime = FigureCanvasTkAgg(figTime, master=window)
     canvas_widget_time = canvasTime.get_tk_widget()
-    canvas_widget_time.grid(row=0, column=5, columnspan=20, rowspan=10)
+    canvas_widget_time.grid(row=0, column=5, columnspan=20, rowspan=9)
     canvasTime.draw()
 
 def updatePlotParlement(dateLow,dateHigh):
@@ -153,6 +159,28 @@ def find_closest_dates(date_str, jahr_list):
                 break
         
     return [str(closest1), str(closest2)]
+
+def create_circle(canvas, x, y, radius, color="white"):
+    return canvas.create_oval(x - radius, y - radius, x + radius, y + radius, fill=color)
+
+def on_circle_hover(event):
+    item_id = event.widget.find_closest(event.x, event.y)
+    if item_id:
+        circle_number = int(event.widget.gettags(item_id)[0])  # Get the circle number from tags
+        canvas.itemconfig(item_id, fill=events_colors_hover[circle_number-1])
+
+def on_circle_leave(event):
+    item_id = event.widget.find_closest(event.x, event.y)
+    if item_id:
+        circle_number = int(event.widget.gettags(item_id)[0])  # Get the circle number from tags
+        canvas.itemconfig(item_id, fill=events_colors[circle_number-1])
+        
+def on_circle_click(event):
+    item_id = event.widget.find_closest(event.x, event.y)
+    if item_id:
+        circle_number = int(event.widget.gettags(item_id)[0])  # Get the circle number from tags
+        jahr_textbox_1.set(dates[circle_number])
+        displayAll()
     
 def _quit():
     window.quit()
@@ -162,6 +190,7 @@ def displayAll():
     result = find_closest_dates(jahr_textbox_1.get(),jahr_list)
     dateHigh = result[0]
     dateLow = result[1]
+    updatePlotTime(selected_party)
     updatePlotParlement(dateLow,dateHigh)
     updatePlotMap(dateLow,dateHigh)
 
@@ -177,32 +206,32 @@ canvas.grid(row=0, column=0, columnspan=21,rowspan=25)
 
 # Button to open the popup
 btn = tk.CTkButton(window, text="Sélection des partis", command=open_selection_popup,bg_color="white")
-btn.grid(row=1, column=4, padx=0, pady=0)
+btn.grid(row=3, column=4, padx=0, pady=0)
 
 selected_party = party_list
 
 # Canton dropdown
 canton_label = tk.CTkLabel(window, text="Canton:",bg_color="white")
-canton_label.grid(row=3, column=3, padx=0, pady=0)
-canton_list = ["Schweiz","Zürich","Bern / Berne","Luzern","Uri","Schwyz","Obwalden","Nidwalden","Glarus","Zug","Fribourg / Freiburg","Solothurn","Basel-Stadt","Basel-Landschaft","Schaffhausen","Appenzell Ausserrhoden","Appenzell Innerrhoden","St. Gallen","Graubünden / Grigioni / Grischun","Aargau","Thurgau","Ticino","Vaud","Valais / Wallis","Neuchâtel","Genève","Jura"]
+canton_label.grid(row=4, column=3, padx=0, pady=0)
+canton_list = ['Suisse','Grisons','Berne','Valais','Vaud','Tessin','Saint-Gall','Zurich','Fribourg','Lucerne','Argovie','Uri','Thurgovie','Schwyz','Jura','Neuchâtel','Soleure','Glaris','Bâle-Campagne','Obwald','Nidwald','Genève','Schaffhouse','Appenzell Rhodes-Extérieures','Zoug',' Bâle-Ville']
 canton_combobox = tk.CTkComboBox(window, values=canton_list,state="readonly", command=lambda value: updatePlotTime(selected_party))
-canton_combobox.grid(row=3, column=4, padx=0, pady=0)
-canton_combobox.set("Schweiz")
+canton_combobox.grid(row=4, column=4, padx=0, pady=0)
+canton_combobox.set("Suisse")
 
 # Gender dropdown
 gender_label = tk.CTkLabel(window, text="Genre:",bg_color="white")
-gender_label.grid(row=4, column=3, padx=0, pady=0)
+gender_label.grid(row=5, column=3, padx=0, pady=0)
 gender_combobox = tk.CTkComboBox(window, values=["Total","Homme/Femme"],state="readonly", command=lambda value: updatePlotTime(selected_party))
-gender_combobox.grid(row=4, column=4, padx=0, pady=0)
+gender_combobox.grid(row=5, column=4, padx=0, pady=0)
 gender_combobox.set("Total")
 
 every_year = ["2019", "2018", "2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004", "2003", "2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990", "1989", "1988", "1987", "1986", "1985", "1984", "1983", "1982", "1981", "1980", "1979", "1978", "1977", "1976", "1975", "1974", "1973", "1972", "1971"]
 
 # Jahr dropdown
 jahr_label_1 = tk.CTkLabel(window, text="Année:",bg_color="white")
-jahr_label_1.grid(row=5, column=3, padx=0, pady=0)
+jahr_label_1.grid(row=1, column=3, padx=0, pady=0)
 jahr_textbox_1 = tk.CTkComboBox(window, values=every_year, command=lambda value:  displayAll())
-jahr_textbox_1.grid(row=5, column=4, padx=0, pady=0)
+jahr_textbox_1.grid(row=1, column=4, padx=0, pady=0)
 jahr_textbox_1.set("2010")
 
 # PARLEMENT PART
@@ -211,40 +240,52 @@ jahr_list = ["2019","2015","2011","2007","2003","1999","1995","1991","1987","198
 # MAP PART
 
 # Type map
-type_map_label = tk.CTkLabel(window, text="Type de carte:",bg_color="white")
-type_map_label.grid(row=11, column=3, padx=0, pady=0)
+type_map_label = tk.CTkLabel(window, text="\tType de carte:",bg_color="white")
+type_map_label.grid(row=14, column=3, padx=0, pady=0)
 
 type_map_combobox = tk.CTkComboBox(window, values=type_map_list, state="readonly", command=lambda value: mapCallback())
-type_map_combobox.grid(row=11, column=4, padx=0, pady=0)
+type_map_combobox.grid(row=14, column=4, padx=0, pady=0)
 type_map_combobox.set("Meilleur parti")
 
 # party dropdown
 party_map_label = tk.CTkLabel(window, text="Parti:",bg_color="white")
-party_map_label.grid(row=12, column=3, padx=0, pady=0)
+party_map_label.grid(row=15, column=3, padx=0, pady=0)
 
 party_map_combobox = tk.CTkComboBox(window, values=party_list, state="readonly", command=lambda value: mapCallback())
-party_map_combobox.grid(row=12, column=4, padx=0, pady=0)
+party_map_combobox.grid(row=15, column=4, padx=0, pady=0)
 party_map_combobox.set("PS")
 
 # Gender dropdown
 gender_map_label = tk.CTkLabel(window, text="Genre:",bg_color="white")
-gender_map_label.grid(row=13, column=3, padx=0, pady=0)
+gender_map_label.grid(row=16, column=3, padx=0, pady=0)
 
 gender_map_combobox = tk.CTkComboBox(window, values=gender_list, state="readonly",bg_color="white", command=lambda value: mapCallback())
-gender_map_combobox.grid(row=13, column=4, padx=0, pady=0)
+gender_map_combobox.grid(row=16, column=4, padx=0, pady=0)
 gender_map_combobox.set("Homme")
+
+# Number of rows and columns in the grid
+rows, columns = 8, 1
+
+# Calculate the spacing between circles
+circle_spacing_x = 100
+circle_spacing_y = canvas.winfo_reqheight() / (rows+1)
+
+# Create circles in the grid, bind hover events, and add circle numbers as tags
+for row in range(rows):
+    x = 100
+    y = (row + 0.7) * circle_spacing_y
+    radius = min(circle_spacing_x, circle_spacing_y)/1.7
+    circle_id = create_circle(canvas, x, y, radius, color='grey')
+    canvas.create_text(x, y, text=events[row], font=("Helvetica", 8), fill='white')
+    canvas.addtag_withtag(row, circle_id)  # Add circle number as a tag
+    canvas.tag_bind(circle_id, "<Enter>", on_circle_hover)
+    canvas.tag_bind(circle_id, "<Leave>", on_circle_leave)
+    
+    # Bind the click event to the circle
+    canvas.tag_bind(circle_id, "<Button-1>", on_circle_click)
 
 updatePlotTime(selected_party)
 displayAll()
-
-#window.rowconfigure(0, mize=30)
-#window.rowconfigure(1, minsize=30)
-#window.rowconfigure(14, minsize=30)
-
-#window.columnconfigure(1, minsize=30)
-#window.columnconfigure(4, minsize=30)
-#window.columnconfigure(10, minsize=30)
-#window.columnconfigure(13, minsize=30)
 
 window.protocol("WM_DELETE_WINDOW", _quit)
 window.mainloop()

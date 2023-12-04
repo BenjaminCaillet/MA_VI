@@ -19,9 +19,9 @@ def updatePlot(selected_party):
     canton = canton_combobox.get()
     
     if gender_combobox.get() == "Total" :
-        fig = plot_party(data_df,translated_list, canton)
+        fig = plot_party(data_df,translated_list, canton,"2010")
     else :
-        fig = plot_gender(data_df, canton)
+        fig = plot_gender(data_df, canton,"2010")
 
     canvas = FigureCanvasTkAgg(fig, master=window)
     canvas_widget = canvas.get_tk_widget()
