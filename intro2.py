@@ -14,6 +14,53 @@ images_path = ["Images/Tchernobyl.PNG","Images/chomage.png",
                "Images/Bilateral.png","Images/Fukushima.png",
                "Images/ClimateStrike.png","Images/FemStrike2014.png"]
 
+events_descriptions_part1= [
+    """
+    L'accident nucléaire de Tchernobyl en 1986, et plus localement l'accident
+    de Schweizerhalle, ont attisés les débats sur la sécurité nucléaire et industrielle.
+    L'heure est à la question de l'environnement, et l'impact de la société sur celui-ci.
+    Le Parti Ecologiste Suisse (futurs Vert-es) prend de l'envergure.
+    """,
+    """
+    La crise de l'emploi de 1992, marquée par une augmentation significative du chômage, 
+    a engendré des tensions économiques et sociales. Les élections de 1995 ont été fortement influencées 
+    par ces préoccupations économiques, mettant en lumière les propositions des candidats pour 
+    faire face à la crise et stimuler l'emploi.
+    """,
+    """
+    Construction de l'Europe dès 1992 (Elections 1999) : 
+    Le début de la construction de l'Union européenne dès 1992 a marqué une étape importante dans l'intégration européenne. 
+    Lors des élections de 1999, les débats ont porté sur les implications de cette intégration, 
+    les relations internationales et la souveraineté nationale, faisant de l'Europe un enjeu central de la campagne.
+    """,
+    """
+    ...
+    """,
+]
+events_descriptions_part2= [
+    """
+    Les Accords bilatéraux II, signés avec l'Union européenne en 2005, ont généré des discussions animées 
+    sur les relations entre la Suisse et l'UE. Lors des élections de 2007, les positions des partis sur ces accords ont été cruciales, reflétant les diverses opinions sur l'orientation future de la politique étrangère suisse.
+    """,
+    """
+    La catastrophe nucléaire de Fukushima en 2011, survenue au Japon, a suscité des 
+    inquiétudes mondiales quant à la sûreté nucléaire. Cette catastrophe a eu un impact direct sur l'opinion 
+    publique suisse, influençant les élections de la même année où les questions énergétiques 
+    et environnementales ont pris une place prépondérante.
+    """,
+    """
+    Les manifestations mondiales pour le climat en 2018 ont attiré l'attention sur 
+    l'urgence des problèmes climatiques. Les élections de 2019 ont été fortement marquées 
+    par ces préoccupations, les électeurs cherchant des leaders politiques engagés dans la lutte 
+    contre le changement climatique et la promotion de politiques environnementales durables.
+    """,
+    """
+    ...
+    """,
+]
+
+events_descriptions = events_descriptions_part1 + events_descriptions_part2
+
 events_colors = ["#84848a"] * 4 + ["#84848a"] * 4
 events_colors_hover = ["#5f5f63"] * 4 + ["#5f5f63"] * 4
 
