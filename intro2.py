@@ -4,7 +4,11 @@ from PIL import Image, ImageDraw
 
 
 events = ["Crise 19xx","Crise 20xx","Crise yyyy","Crise ABCD","1234","5678","Un événement important et long","Ceci"]
-images_path = ["Images/11sep.png","Images/11sep2.png","Images/11sep.png","Images/11sep.png","Images/11sep.png","Images/11sep.png","Images/11sep.png","Images/Maquette.png"]
+images_path = ["Images/Tchernobyl.PNG","Images/chomage.png",
+               "Images/Europe.png","Images/FemStrike1991.png",
+               "Images/Bilateral.png","Images/Fukushima.png",
+               "Images/ClimateStrike.png","Images/FemStrike2014.png"]
+
 events_colors = ["#84848a"] * 4 + ["#84848a"] * 4
 events_colors_hover = ["#5f5f63"] * 4 + ["#5f5f63"] * 4
 
