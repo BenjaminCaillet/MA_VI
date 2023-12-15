@@ -3,7 +3,12 @@ import numpy as np
 from PIL import Image, ImageDraw
 
 
-events = ["Crise 19xx","Crise 20xx","Crise yyyy","Crise ABCD","1234","5678","Un événement important et long","Ceci"]
+# events names
+# events = ["Crise 19xx","Crise 20xx","Crise yyyy","Crise ABCD","1234","5678","Un événement important et long","Ceci"]
+events = ["Tchernobyl + Schweizerhalle 1986","Crise du chômage de 1992",
+          "Union Européenne dès 1992","Répartition F/H de 1971 à 1995",
+          "Accords Bilatéraux II 2005","Fukushima 2011",
+          "Manifestations Climat 2018","Répartition F/H de 1995 à 2019"]
 images_path = ["Images/Tchernobyl.PNG","Images/chomage.png",
                "Images/Europe.png","Images/FemStrike1991.png",
                "Images/Bilateral.png","Images/Fukushima.png",
