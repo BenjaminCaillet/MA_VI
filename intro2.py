@@ -1,7 +1,7 @@
 import customtkinter as tk
-import math
-from PIL import Image, ImageFilter, ImageGrab, ImageTk, ImageDraw
-import matplotlib.pyplot as plt
+import numpy as np
+from PIL import Image, ImageDraw
+
 
 events = ["Crise 19xx","Crise 20xx","Crise yyyy","Crise ABCD","1234","5678","Un événement important et long","Ceci"]
 images_path = ["Images/11sep.png","Images/11sep2.png","Images/11sep.png","Images/11sep.png","Images/11sep.png","Images/11sep.png","Images/11sep.png","Images/Maquette.png"]
@@ -24,7 +24,25 @@ def create_circle_button_with_image(window, x, y, radius, image_path, text,butto
     image = Image.new("RGBA", (int(2 * radius), int(2 * radius)), (255, 255, 255, 0))
     image.paste(original_image, (0, 0), mask)
 
+
+
     tk_image = tk.CTkImage(image,image,(int(2 * radius), int(2 * radius)))
+    image_map[button_id]=tk_image
+
+    # Creat the tranparent image
+    image = image.convert("RGBA")
+    pixels = np.array(image)
+    pixels[:, :, 3] = 50
+    new_image = Image.fromarray(pixels, "RGBA")
+
+    # Appliquez le masque à l'image
+    image = Image.new("RGBA", (int(2 * radius), int(2 * radius)), (255, 255, 255, 0))
+    image.paste(new_image, (0, 0), mask)
+
+
+    tk_new_image = tk.CTkImage(image, image, (int(2 * radius), int(2 * radius)))
+
+    image_trans_map[button_id]=tk_new_image
 
     # Create the circular button
     button = tk.CTkButton(window, image=tk_image, command=lambda :button_click(button_id))
@@ -35,8 +53,8 @@ def create_circle_button_with_image(window, x, y, radius, image_path, text,butto
 
     button.bind("<Enter>", lambda event: button_enter(event, button_id))
     button.bind("<Leave>", lambda event: button_leave(event, button_id))
-    button.configure(text=text,hover=True,compound="top",anchor="S")
-
+    button.configure(text=text,hover=False,compound="top",anchor="S")
+    button.configure(text_color="#FFFFFF")
     return button
 
 def button_click(button_id):
@@ -60,11 +78,13 @@ def button_enter(event,button_id):
     for id in range(rows*columns):
         if id != button_id:
             button=button_map[id]
-            button.place_forget()
+            button.configure(image=image_trans_map[id])
+            button.configure(text_color="#323232")
 
 
 
 def button_leave(event,button_id):
+
     for row in range(rows):
         for col in range(columns):
             x = (col + 0.5) * circle_spacing_x
@@ -72,6 +92,8 @@ def button_leave(event,button_id):
             circle_idx = 4 * (row) + (col)
             button=button_map[circle_idx]
             button.place(x=x - radius, y=y - radius)
+            button.configure(image=image_map[circle_idx])
+            button.configure(text_color="#FFFFFF")
     explanation_label.place_forget()
 
 
@@ -89,7 +111,8 @@ app.geometry("{}x{}".format(windos_w,windos_h))
 
 
 #creat a image list for the save
-image_list=[]
+image_map={}
+image_trans_map={}
 button_map = {}
 
 
