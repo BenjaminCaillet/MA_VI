@@ -28,10 +28,11 @@ events_descriptions_part1= [
     faire face à la crise et stimuler l'emploi.
     """,
     """
-    Construction de l'Europe dès 1992 (Elections 1999) : 
-    Le début de la construction de l'Union européenne dès 1992 a marqué une étape importante dans l'intégration européenne. 
-    Lors des élections de 1999, les débats ont porté sur les implications de cette intégration, 
+    Avec le traité de Maastricht de 1992, la construction de l'Union Européenne a démarré, mais en Suisse, le rejet
+    par référendum à l'Espace Economique Européen la même année a marqué la position du peuple.
+    Lors des élections de 1995, puis de 1999, les débats ont porté sur les implications de cette intégration, 
     les relations internationales et la souveraineté nationale, faisant de l'Europe un enjeu central de la campagne.
+    L'UDC, parti souverainiste, s'est démarqué des partis de droite plus économiques et plus pro-européens. 
     """,
     """
     ...
@@ -39,20 +40,20 @@ events_descriptions_part1= [
 ]
 events_descriptions_part2= [
     """
-    Les Accords bilatéraux II, signés avec l'Union européenne en 2005, ont généré des discussions animées 
-    sur les relations entre la Suisse et l'UE. Lors des élections de 2007, les positions des partis sur ces accords ont été cruciales, reflétant les diverses opinions sur l'orientation future de la politique étrangère suisse.
+    Les Accords Bilatéraux II, signés avec l'Union Européenne en 2005, ont ravivé les débats
+    sur la relation entre la Suisse et l'UE. En 2007, les élections ont été marquées par ses débats, 
+    renforçant entre autre la position nationaliste de l'UDC.
     """,
     """
-    La catastrophe nucléaire de Fukushima en 2011, survenue au Japon, a suscité des 
-    inquiétudes mondiales quant à la sûreté nucléaire. Cette catastrophe a eu un impact direct sur l'opinion 
-    publique suisse, influençant les élections de la même année où les questions énergétiques 
-    et environnementales ont pris une place prépondérante.
+    La catastrophe nucléaire de Fukushima en 2011 (Japon), a suscité des inquiétudes quant à la sûreté nucléaire. 
+    Cette catastrophe a eu un impact direct sur l'opinion publique suisse, influençant les élections de la
+    même année sur la place du nucléaire dans le mix énergétique du pays. Les Verts Libéraux ont pu
+    sortir leur épingle du jeu, aux dépends des Vert-es.
     """,
     """
-    Les manifestations mondiales pour le climat en 2018 ont attiré l'attention sur 
-    l'urgence des problèmes climatiques. Les élections de 2019 ont été fortement marquées 
-    par ces préoccupations, les électeurs cherchant des leaders politiques engagés dans la lutte 
-    contre le changement climatique et la promotion de politiques environnementales durables.
+    En 2018, les "Grèves du Climat" et autres manifestations écologistes ont attiré l'attention sur 
+    l'urgence climatique. Les élections de 2019 ont été fortement marquées par ces préoccupations, 
+    résultant en une "vague verte" sur les résultats.
     """,
     """
     ...
