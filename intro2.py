@@ -59,6 +59,8 @@ events_descriptions_part2= [
     ...
     """,
 ]
+label_weight=[0,0,1000,500,0,0,1000,1000]
+label_high = [0,-60,0,0,0,0,0,0]
 
 events_descriptions = events_descriptions_part1 + events_descriptions_part2
 
@@ -119,19 +121,17 @@ def button_click(button_id):
         print(f"Clicked on circle: {events[button_id - 1]}")
 
 def button_enter(event,button_id):
-
-    explanation_label.configure(text=f"Afficher événement: {events[button_id]}")
     # Déplacer le texte explicatif à gauche ou à droite
-    circle_idx = 4 * (row) + (col)
-    row_b=int(button_id/4)
-    col_b=button_id%4
+    row_b = int(button_id / 4)
+    col_b = button_id % 4
     x_b = (col_b + 0.5) * circle_spacing_x
     y_b = (row_b + 0.5) * circle_spacing_y
-    w_b = explanation_label.winfo_reqwidth()
-    if col_b <  2:
-        explanation_label.place(x=x_b+radius+30, y=y_b)
+
+    if col_b < 2:
+        label_map[button_id].place(x=x_b + radius + 30, y=y_b+label_high[button_id])
     else:
-        explanation_label.place(x=x_b-30-w_b, y=y_b)
+        label_map[button_id].place(x=x_b - 30 - label_weight[button_id], y=y_b+label_high[button_id])
+
     for id in range(rows*columns):
         if id != button_id:
             button=button_map[id]
@@ -139,8 +139,9 @@ def button_enter(event,button_id):
             button.configure(text_color="#323232")
 
 
-
 def button_leave(event,button_id):
+
+
 
     for row in range(rows):
         for col in range(columns):
@@ -151,7 +152,7 @@ def button_leave(event,button_id):
             button.place(x=x - radius, y=y - radius)
             button.configure(image=image_map[circle_idx])
             button.configure(text_color="#FFFFFF")
-    explanation_label.place_forget()
+    label_map[button_id].place_forget()
 
 
 
@@ -171,7 +172,7 @@ app.geometry("{}x{}".format(windos_w,windos_h))
 image_map={}
 image_trans_map={}
 button_map = {}
-
+label_map = {}
 
 # Calculate the spacing between circles
 circle_spacing_x = windos_w / columns
@@ -179,21 +180,34 @@ circle_spacing_x = windos_w / columns
 circle_spacing_y = windos_h / rows
 
 radius = int(min(circle_spacing_x, circle_spacing_y) / 3)
+
+#titre
+titre = tk.CTkLabel(app, text="Représentation de l'influence d'un evenemt sur la politique suisse", font=("Helvetica", 35),state="disabled")
+titre.place(x=int(windos_w/2)-450,y=10)
+
 # Create circles in the grid, bind hover events, and add circle numbers as tags
 for row in range(rows):
     for col in range(columns):
         x = (col + 0.5) * circle_spacing_x
         y = (row + 0.5) * circle_spacing_y
         circle_idx = 4*(row) + (col)
-        print(circle_idx,row,col)
         button= create_circle_button_with_image(app, x, y, radius,images_path[circle_idx],events[circle_idx],circle_idx)
         button_map[circle_idx] = button
-
 # Create a Label of circle
-explanation_label = tk.CTkLabel(app, text="C'est un text test pour l'instant", font=("Helvetica", 10),state="disabled")
-explanation_label.configure(fg_color="white")
-explanation_label.place()
-#explanation_label.place_forget()  # Initialiser en tant que caché
+for row in range(rows):
+    for col in range(columns):
+        x = (col + 0.5) * circle_spacing_x
+        y = (row + 0.5) * circle_spacing_y
+        circle_idx = 4 * (row) + (col)
+        explanation_label = tk.CTkLabel(app, text=events_descriptions[circle_idx], font=("Helvetica", 15),state="disabled")
+        if col < 2:
+            explanation_label.place(x=x + radius + 30, y=y+label_high[circle_idx])
+            explanation_label.configure(justify="left")
+        else:
+            explanation_label.place(x=x - 30 - radius-label_weight[circle_idx], y=y+label_high[circle_idx])
+            explanation_label.configure(justify="right")
+        explanation_label.place_forget()
+        label_map[circle_idx]=explanation_label
 
 
 
