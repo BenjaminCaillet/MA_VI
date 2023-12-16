@@ -169,7 +169,7 @@ def plot_diff_gender(switzerland,dataset,gender,year_old,year_new):
     if gender == "Mann":
         n1="Evolution de la représentation masculine"
     else:
-        n1="Evolution de la représentation femminine"
+        n1="Evolution de la représentation féminine"
     name = n1 + " entre " + year_old + " et " + year_new
     fig=plot_num(switzerland_data,0,name)
     return fig
