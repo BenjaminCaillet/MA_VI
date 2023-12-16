@@ -419,7 +419,8 @@ button_id_ = 0
 
 # GUI setup
 window = tk.CTk()
-window.after(0, lambda:window.state('zoomed'))
+window.geometry("1920x1080")
+#window.after(0, lambda:window.state('zoomed'))
 pageMain = tk.CTkFrame(window,windos_w,windos_h)
 
 window.title("Sélection du parti et du canton")

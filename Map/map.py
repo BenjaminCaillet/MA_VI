@@ -79,7 +79,7 @@ def plot_num(switzerland,mode=0,title='Carte de la Suisse'):
     plt.title(title)
     # Customize the colorbar ticks with integers
     ticks = np.arange(vmin, vmax + 1, 1)
-    cbar = plt.colorbar(sw.get_children()[0], ax=ax, ticks=ticks, orientation='vertical',shrink = 0.5)
+    cbar = plt.colorbar(sw.get_children()[0], ax=ax, ticks=ticks, orientation='vertical',shrink = 0.7)
     return fig
 
 def plot_obj(switzerland,name_data="DATA",title='Carte de la Suisse'):

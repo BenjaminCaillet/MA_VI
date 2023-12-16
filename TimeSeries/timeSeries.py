@@ -41,6 +41,11 @@ french_to_german = {
     "Autres": "Übrige"
 }
 
+french_to_german_gender = {
+    "Frau": "Femme",
+    "Mann": "Homme"
+}
+
 def plot_party(data_df,selected_party, canton, year):
     # Data filtering
     elect = data_df[(data_df['Partei'].isin(selected_party)) & (data_df['Ergebnisse'] == 'Gewählte') & (data_df['Kanton'] == canton) & (data_df['Geschlecht'] == "Geschlecht - Total")]
@@ -69,13 +74,15 @@ def plot_gender(data_df, canton,year):
     elect = data_df[(data_df['Partei'] == 'Parteien - Total') & (data_df['Ergebnisse'] == 'Gewählte') & (data_df['Kanton'] == canton)]
     elect_filtered = elect[elect['Geschlecht'].isin(['Mann', 'Frau'])]
     elect_filtered['DATA'] = np.where(~elect_filtered['DATA'].str.contains(r'\d'), '0', elect_filtered['DATA']) # Filter empty values
+    gender_convert = elect_filtered['Geschlecht'].replace(french_to_german_gender)
+    elect_filtered['Geschlecht'] = gender_convert
     elect_filtered['DATA'] = elect_filtered['DATA'].astype(int)
     elect_filtered['Jahr'] = elect_filtered['Jahr'].astype(int)
     pivot_data = elect_filtered.pivot(index='Jahr', columns='Geschlecht', values='DATA')
     
     # Plotting
     fig, ax = plt.subplots(figsize=(10, 6))
-    pivot_data.plot(kind='line', ax=ax)
+    pivot_data.plot(kind='line',color = ["red","blue"], ax=ax)
     ax.axvline(x=int(year), color='red', linestyle='--')
     ax.set_title("Nombre d'élus par année " + 'pour ' +  dictionary_canton_to_french[canton])
     ax.set_ylabel("Nombre d'élus")
