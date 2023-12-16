@@ -64,7 +64,7 @@ def plot_party(data_df,selected_party, canton, year):
     ax.axvline(x=int(year), color='red', linestyle='--')
     ax.set_title("Nombre d'élus par année " + 'pour ' + dictionary_canton_to_french[canton])
     ax.set_ylabel("Nombre d'élus")
-    ax.set_xlabel('Années')
+    ax.set_xlabel('')
     ax.legend(title="Elus")
     
     return fig
@@ -86,7 +86,7 @@ def plot_gender(data_df, canton,year):
     ax.axvline(x=int(year), color='red', linestyle='--')
     ax.set_title("Nombre d'élus par année " + 'pour ' +  dictionary_canton_to_french[canton])
     ax.set_ylabel("Nombre d'élus")
-    ax.set_xlabel('Années')
+    ax.set_xlabel('')
     ax.legend(title="Elus")
     
     return fig

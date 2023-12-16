@@ -134,10 +134,11 @@ def button_enter(event,button_id):
     else :
         y_b = (row_b + 0.5) * circle_spacing_y
 
-    if col_b < 2:
-        label_map[button_id].place(x=x_b + radius + 30, y=y_b+label_high[button_id])
-    else:
-        label_map[button_id].place(x=x_b - 30 - label_weight[button_id], y=y_b+label_high[button_id])
+    if button_id != 3 and button_id != 7 :
+        if col_b < 2:
+            label_map[button_id].place(x=x_b + radius + 30, y=y_b+label_high[button_id])
+        else:
+            label_map[button_id].place(x=x_b - 30 - label_weight[button_id], y=y_b+label_high[button_id])
 
     for id in range(rows*columns):
         if id != button_id:
@@ -363,25 +364,6 @@ def find_closest_dates(date_str, jahr_list):
 
 def create_circle(canvas, x, y, radius, color="white"):
     return canvas.create_oval(x - radius, y - radius, x + radius, y + radius, fill=color)
-
-def on_circle_hover(event):
-    item_id = event.widget.find_closest(event.x, event.y)
-    if item_id:
-        circle_number = int(event.widget.gettags(item_id)[0])  # Get the circle number from tags
-        canvas.itemconfig(item_id, fill=events_colors_hover[circle_number-1])
-
-def on_circle_leave(event):
-    item_id = event.widget.find_closest(event.x, event.y)
-    if item_id:
-        circle_number = int(event.widget.gettags(item_id)[0])  # Get the circle number from tags
-        canvas.itemconfig(item_id, fill=events_colors[circle_number-1])
-        
-def on_circle_click(event):
-    item_id = event.widget.find_closest(event.x, event.y)
-    if item_id:
-        circle_number = int(event.widget.gettags(item_id)[0])  # Get the circle number from tags
-        jahr_textbox_1.set(dates[circle_number])
-        displayAll()
     
 def _quit():
     window.quit()
@@ -542,7 +524,7 @@ for row in range(rows):
         else :
             y = (row + 0.5) * circle_spacing_y
         circle_idx = 4 * (row) + (col)
-        explanation_label = tk.CTkLabel(pageIntro, text=events_descriptions[circle_idx], font=("Helvetica", 15),state="disabled")
+        explanation_label = tk.CTkLabel(pageIntro, text=events_descriptions[circle_idx], font=("Helvetica", 15),state="disabled",bg_color="white")
         if col < 2:
             explanation_label.place(x=x + radius + 30, y=y+label_high[circle_idx])
             explanation_label.configure(justify="left")
