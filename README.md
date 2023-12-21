@@ -1,5 +1,13 @@
 # Cours VI Visualisation de l'information
 
+## Version exécutable
+
+Vous trouverez dans "release" une version executable de notre programme pour Windows
+
+## Dépendences
+
+Les dépendences de ce projet sont : PyAxis, Matplotlib, CustomTkinter, GeoPandas et poli_sci_kit.
+
 ## Membres 
 
 CAILLET Benjamin, DESSIEX Lea, SCHUPBACH Mathieu
