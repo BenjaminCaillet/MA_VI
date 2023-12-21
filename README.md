@@ -30,10 +30,3 @@ Nous aspirons à offrir une représentation visuelle exhaustive de l'influence d
 ## Dataset
 
 Le dataset utilisé pour ce projet est disponible sur le site de [BFS (Office fédéral de la statistique)](https://www.bfs.admin.ch/bfs/fr/home/statistiques/politique/elections.assetdetail.12967003.html).
-
-## Comment Utiliser
-
-1. Clônez ce dépôt sur votre ordinateur local en utilisant la commande suivante :
-
-   ```bash
-   git clone https://github.com/VotreUtilisateur/VotreProjet.git
