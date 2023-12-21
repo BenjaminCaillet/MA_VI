@@ -2,6 +2,7 @@ from pyaxis import pyaxis
 import matplotlib.pyplot as plt
 import customtkinter as tk
 import customtkinter
+import os
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from TimeSeries.timeSeries import plot_party, plot_gender, party_list, party_list_complet, french_to_german
 from Parliament.parliament import plot_parliament
@@ -79,14 +80,23 @@ events_colors_hover = ["#5f5f63"] * 4 + ["#5f5f63"] * 4
 # Setting up theme of the app
 customtkinter.set_appearance_mode("light")
 
+def resource_path(relative):
+    return os.path.join(
+        os.environ.get(
+            "_MEIPASS2",
+            os.path.abspath(".")
+        ),
+        relative
+    )
+fp = resource_path("Dataset.px")
 # Parse the dataset
-fp = r"Dataset/Dataset.px"
+#fp = "Dataset/Dataset.px"
 px = pyaxis.parse(uri=fp, encoding='ANSI')
 data_df = px['DATA']
 image_map={}
 image_trans_map={}
-
-switzerland = gc.creat_geoswitz('Dataset/Swiss.geojson')
+sg = resource_path("Swiss.geojson")
+switzerland = gc.creat_geoswitz(sg)
 
 def button_click(button_id):
     # Handle the click event
